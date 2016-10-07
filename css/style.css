@@ -1,0 +1,30 @@
+#container {
+  border-radius: 10px;
+  height: 650px;
+  width: 700px;
+  background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+}
+
+#case {
+  display: flex;
+  flex-direction: row;
+  margin-top: 100px;
+}
+
+#screen {
+  border: 1px solid black;
+  border border-radius: 10px;
+  background-color: lightgray;
+  height: 450px;
+  width: 450px;
+}
+
+#side-panel {
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 125px;
+  width: 150px;
+}
+
