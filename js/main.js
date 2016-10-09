@@ -42,14 +42,18 @@ $(document).ready(function() {
         for(var y = 0; y < 37; y++) {
             var space = $("<div class='space'></div>");
             space.appendTo('#gameScreen');
+        //generate some kind of array of arrays based
+        //on this equation here
         }
     }
 });
-//use the array of arrays like cartesian coordinates to build a
-//grid of divs
-//for each
-
 
 //function to move the cube around the grid using the arrow keys
+//make all cubes attached to the snake follow the same motion as the head
 
-//
+//function to add a block to the end of the snake once the apple has been eaten
+
+//lose states
+//if snake head touches wall div function launch game over screen
+//if snake head touches snake body function launch game over screen
+
