@@ -4,6 +4,7 @@
   width: 700px;
   background-color: #96AB84;
   text-align: center;
+  margin: 0 auto;
 }
 
 h1 {
@@ -18,7 +19,7 @@ h1 {
   margin: 30px 20px 0 30px;
 }
 
-#screen {
+.screen {
   /*border: 1px solid black;*/
   border border-radius: 10px;
   background-color: #EAEEE6;
@@ -27,10 +28,28 @@ h1 {
   margin-right: 30px;
 }
 
+#startScreen {
+  background-color: forestgreen;
+}
+
+#gameOver {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.restart {
+  height: 50px;
+  width: 120px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
 #side-panel {
  /* border: 1px solid black;*/
   border-radius: 10px;
-  height: 300px;
+  height: 280px;
   width: 150px;
   margin-top: 25px;
   background-color: #5a664f;
@@ -47,9 +66,16 @@ h1 {
   margin: 0 auto;
 }
 
-.sidebutt {
+h3 {
+  margin: 0 auto;
+}
+.sidebuttons {
   height: 50px;
   width: 120px;
   border-radius: 10px;
   margin: 0 auto;
+}
+
+#instructions {
+  margin-top: 20px;
 }
