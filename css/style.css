@@ -49,7 +49,7 @@ h1 {
 #side-panel {
  /* border: 1px solid black;*/
   border-radius: 10px;
-  height: 210px;
+  height: 200px;
   width: 150px;
   margin-top: 25px;
   background-color: #5a664f;
@@ -92,4 +92,8 @@ h3 {
     margin: 1px;
     display: inline-block;
     float: left;
+}
+
+.snake {
+  background-color: black;
 }
