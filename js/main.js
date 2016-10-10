@@ -1,35 +1,20 @@
 console.log("snek")
-// var grid = [ ['','','','','','','','','','','','','','','','','','','','','',''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['',x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,''],
-//       ['','','','','','','','','','','','','','','','','','','','','',''] ]
-
 //var y = grid[i]
-//var x = grid[i,i]
+//var x = grid[i][i]
 //play button function that launches the game screen
+var snakeArray = [[1,1],
+                  [1,2],
+                  [1,3],
+                  [2,3]]
+var snakeLength = snakeArray.length;
 
+//buttons!!
 $(function(){
     $("#gameScreen").hide();
+    $("#pauseButton").hide();
     $("#playButton").on("click", function(){
         $("#startScreen, #gameScreen").toggle();
+        $("#playButton, #pauseButton").toggle();
         //function to spawn the apple randomly using the x and y grid
         //function to make the starter snake head appear in the same spot
         //on start every time
@@ -47,6 +32,15 @@ $(document).ready(function() {
         }
     }
 });
+
+function fillSnake() {
+    for (var i=0; i < snakeLength; i++) {
+        var row = snakeArray[i][0]
+        var column = snakeArray[i][1]
+        $('.space')[37 * row + column].style.backgroundColor = "black";
+    }
+}
+fillSnake()
 
 //function to move the cube around the grid using the arrow keys
 //make all cubes attached to the snake follow the same motion as the head
