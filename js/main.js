@@ -1,4 +1,3 @@
-console.log("snek");
 //var y = grid[i]
 //var x = grid[i][i]
 //play button function that launches the game screen
@@ -36,6 +35,30 @@ $(document).ready(function() {
     }
 });
 
+
+//APPLE
+$(document).ready(function generateApple() {
+    function getRandomX(min, max) {
+      min = Math.ceil(0);
+      max = Math.floor(37);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    apple.push(getRandomX())
+    function getRandomY(min, max) {
+      min = Math.ceil(0);
+      max = Math.floor(37);
+      return Math.floor(Math.random() * (max - min)) + min;
+    }
+    apple.push(getRandomY())
+})
+
+function fillApple() {
+        var row = apple[0];
+        var column = apple[1];
+        var currentSpace = (37 * row + column);
+        $('.space').eq(currentSpace).css("background-color","red");
+}
+
 //SNAKE
 $(document).ready(function generateSnake() {
     var snakeHead = [];
@@ -64,34 +87,20 @@ function fillSnake() {
     }
 }
 
-//APPLE
-$(document).ready(function generateApple() {
-    function getRandomX(min, max) {
-      min = Math.ceil(0);
-      max = Math.floor(37);
-      return Math.floor(Math.random() * (max - min)) + min;
+var growSnake = function() {
+    if (snake[0] === apple) {
+        snake.unshift(apple);
     }
-    apple.push(getRandomX())
-    function getRandomY(min, max) {
-      min = Math.ceil(0);
-      max = Math.floor(37);
-      return Math.floor(Math.random() * (max - min)) + min;
+    else {
+        generateSnake()
     }
-    apple.push(getRandomY())
-})
-
-function fillApple() {
-        var row = apple[0];
-        var column = apple[1];
-        var currentSpace = (37 * row + column);
-        $('.space').eq(currentSpace).css("background-color","red");
 }
+//function to add a block to the end of the snake once the apple has been eaten
 
-
-//function to move the cube around the grid using the arrow keys
 //make all cubes attached to the snake follow the same motion as the head
 
-//function to add a block to the end of the snake once the apple has been eaten
+//function to move the cube around the grid using the arrow keys
+
 
 //lose states
 //if snake head touches wall div function launch game over screen
