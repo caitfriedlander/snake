@@ -1,12 +1,3 @@
-//var y = grid[i]
-//var x = grid[i][i]
-//play button function that launches the game screen
-// var snake = [[2,3],
-//              [2,4],
-//              [2,5],
-//              [2,6],
-//              [2,7],
-//              [1,7]]
 var snake = [];
 var apple = [];
 
@@ -17,9 +8,7 @@ $(function(){
     $("#playButton").on("click", function(){
         $("#startScreen, #gameScreen").toggle();
         $("#playButton, #pauseButton").toggle();
-        //function to spawn the apple randomly using the x and y grid
-        //function to make the starter snake head appear in the same spot
-        //on start every time
+
         fillSnake();
         fillApple();
     });
@@ -61,20 +50,20 @@ function fillApple() {
 
 //SNAKE
 $(document).ready(function generateSnake() {
-    var snakeHead = [];
+    var newSnakeHead = [];
     function getRandomX(min, max) {
       min = Math.ceil(0);
       max = Math.floor(37);
       return Math.floor(Math.random() * (max - min)) + min;
     };
-    snakeHead.push(getRandomX());
+    newSnakeHead.push(getRandomX());
     function getRandomY(min, max) {
       min = Math.ceil(0);
       max = Math.floor(37);
       return Math.floor(Math.random() * (max - min)) + min;
     };
-    snakeHead.push(getRandomY());
-    snake.push(snakeHead);
+    newSnakeHead.push(getRandomY());
+    snake.push(newSnakeHead);
 })
 
 function fillSnake() {
@@ -87,15 +76,58 @@ function fillSnake() {
     }
 }
 
-var growSnake = function() {
-    if (snake[0] === apple) {
-        snake.unshift(apple);
+//move and grow snake
+function moveSnake () {
+    //on upKeyPress {
+    var snakeHead = snake[0];
+    var i = snakeHead[1];
+    var newHead = snakeHead[0]-1;
+    if ([newHead, i] === apple) {
+        snake.unshift([apple]);
     }
     else {
-        generateSnake()
+        snake.pop();
+        snake.unshift([i, newHead]);
     }
+    //}
+    //on downKeyPress {
+    var snakeHead = snake[0];
+    var i = snakeHead[1];
+    var newHead = snakeHead[0]+1;
+    if ([newHead, i] === apple) {
+        snake.unshift([apple]);
+    }
+    else {
+        snake.pop();
+        snake.unshift([i, newHead]);
+    }
+    //}
+    //on leftKeyPress {
+    var snakeHead = snake[0];
+    var i = snakeHead[0];
+    var newHead = snakeHead[1]-1;
+    if ([i, newHead] === apple) {
+        snake.unshift([apple]);
+    }
+    else {
+        snake.pop();
+        snake.unshift([i, newHead]);
+    }
+    //}
+    //on rightKeyPress {
+    var snakeHead = snake[0];
+    var i = snakeHead[0];
+    var newHead = snakeHead[1]+1;
+    if ([i, newHead] === apple) {
+        snake.unshift([apple]);
+    }
+    else {
+        snake.pop();
+        snake.unshift([i, newHead]);
+    }
+    //}
 }
-//function to add a block to the end of the snake once the apple has been eaten
+
 
 //make all cubes attached to the snake follow the same motion as the head
 
