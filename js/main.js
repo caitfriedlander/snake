@@ -35,7 +35,6 @@ function fillSnake() {
         var row = snakeArray[i][0];
         var column = snakeArray[i][1];
         var $currentTile = $('.space')[37 * row + column];
-        debugger;
         // $currentTile.css("background-color","black");
         $currentTile.addClass("snake");
     }
