@@ -1,6 +1,6 @@
 var snake = [];
 var apple = [];
-
+var newSnakeHead;
 //BUTTONS
 $(function(){
     $("#gameScreen").hide();
@@ -21,18 +21,8 @@ $("#restart").on("click", function (){
         $("#gameOver, #gameScreen").toggle();
         $("#restart, #pauseButton").toggle();
         function generateNewSnake() {
-          var newSnakeHead = [];
-          function getRandomX(min, max) {
-            min = Math.ceil(0);
-            max = Math.floor(37);
-            return Math.floor(Math.random() * (max - min)) + min;
-          };
+          newSnakeHead = [];
           newSnakeHead.push(getRandomX());
-          function getRandomY(min, max) {
-            min = Math.ceil(0);
-            max = Math.floor(37);
-            return Math.floor(Math.random() * (max - min)) + min;
-          };
           newSnakeHead.push(getRandomY());
           snake  = [];
           snake.push(newSnakeHead);
@@ -41,6 +31,7 @@ $("#restart").on("click", function (){
           fillSnake();
           generateApple();
           fillApple();
+          //score 0
     })
 
 //GRID
@@ -88,18 +79,8 @@ function fillApple() {
 
 //SNAKE
 $(document).ready(function generateSnake() {
-    var newSnakeHead = [];
-    function getRandomX(min, max) {
-      min = Math.ceil(0);
-      max = Math.floor(37);
-      return Math.floor(Math.random() * (max - min)) + min;
-    };
+    newSnakeHead = [];
     newSnakeHead.push(getRandomX());
-    function getRandomY(min, max) {
-      min = Math.ceil(0);
-      max = Math.floor(37);
-      return Math.floor(Math.random() * (max - min)) + min;
-    };
     newSnakeHead.push(getRandomY());
     snake.push(newSnakeHead);
 })
@@ -125,15 +106,21 @@ function fillSnake() {
 // }
 
 //loop through snake array
-// if(jQuery.inArray(newHead, snake)) {
-//     console.log("is in array");
-// } else {
-//     console.log("is NOT in array");
-// }
+var checkSnake = function () {
+  for (var i = 1; i<snake.length; i++) {
+    if (_.isEqual(snake[0], snake[i])) {
+      return(true);
+    }
+    else {
+      return(false);
+    }
+  }
+}
+checkSnake();
 
 //move and grow snake
 $(document).keydown(function(e) {
-    switch(e.which) {
+    switch(e.which) { // snake.direction
         case 37: // left
         var snakeHead = snake[0];
         var newHead = [snakeHead[0], snakeHead[1]-1];
