@@ -26,20 +26,25 @@ $(document).ready(function() {
 
 
 //APPLE
-$(document).ready(function generateApple() {
-    function getRandomX(min, max) {
-      min = Math.ceil(0);
-      max = Math.floor(37);
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    apple.push(getRandomX())
-    function getRandomY(min, max) {
-      min = Math.ceil(0);
-      max = Math.floor(37);
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    apple.push(getRandomY())
-})
+function getRandomX(min, max) {
+  min = Math.ceil(0);
+  max = Math.floor(37);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function getRandomY(min, max) {
+  min = Math.ceil(0);
+  max = Math.floor(37);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function generateApple() {
+    apple = []
+    apple.push(getRandomX());
+    apple.push(getRandomY());
+}
+
+$(document).ready(generateApple)
 
 function fillApple() {
         var row = apple[0];
@@ -47,8 +52,6 @@ function fillApple() {
         var currentSpace = (37 * row + column);
         $('.space').eq(currentSpace).css("background-color","red");
 }
-
-//if apple = [] spawn a new apple
 
 //SNAKE
 $(document).ready(function generateSnake() {
@@ -83,21 +86,17 @@ function fillSnake() {
 function moveSnake () {
     //on upKeyPress {
     var snakeHead = snake[0];
-    var i = snakeHead[1];
-    var newHead = snakeHead[0]-1;
-    // if (newHead === apple[0] && i === apple[1]) {
-    //     snake.unshift([apple]);
-    // }
-    // else {
-        snake.unshift([i, newHead]);
+    var newHead = [snakeHead[0]-1, snakeHead[1]];
+    if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+        snake.unshift(apple);
+        generateApple();
+    }
+    else {
+        snake.unshift(newHead);
         snake.pop();
-        for (var i=0; i < snake.length; i++) {
-            var row = snake[i][0];
-            var column = snake[i][1];
-            var currentSpace = (37 * row + column);
-            $('.space').eq(currentSpace).css("background-color","black");
-        }
-    // }
+        fillSnake()
+        fillApple()
+    }
     //}
     // //on downKeyPress {
     // var snakeHead = snake[0];
@@ -136,6 +135,7 @@ function moveSnake () {
     // }
     // //}
 }
+
 
 
 //make all cubes attached to the snake follow the same motion as the head
