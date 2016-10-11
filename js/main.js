@@ -24,6 +24,11 @@ $(document).ready(function() {
     }
 });
 
+//SCORE
+
+function growScore(){
+   $('#scoreboard').text(snake.length -1);
+}
 
 //APPLE
 function getRandomX(min, max) {
@@ -82,65 +87,85 @@ function fillSnake() {
 }
 
 //move and grow snake
-//still in progress
-function moveSnake () {
-    //on upKeyPress {
-    var snakeHead = snake[0];
-    var newHead = [snakeHead[0]-1, snakeHead[1]];
-    if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-        snake.unshift(apple);
-        generateApple();
+$(document).keydown(function(e) {
+    switch(e.which) {
+        case 37: // left
+        var snakeHead = snake[0];
+        var newHead = [snakeHead[0], snakeHead[1]-1];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+            snake.unshift(apple);
+            //still not working right
+            $(snake).eq(0).css("background-color","black");
+            generateApple();
+            growScore();
+        }
+        else {
+            snake.unshift(newHead);
+            snake.pop();
+            fillSnake();
+            fillApple();
+        }
+        break;
+
+        case 38: // up
+        var snakeHead = snake[0];
+        var newHead = [snakeHead[0]-1, snakeHead[1]];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+            snake.unshift(apple);
+            //still not working right
+            $(snake).eq(0).css("background-color","black");
+            generateApple();
+            growScore();
+        }
+        else {
+            snake.unshift(newHead);
+            snake.pop();
+            fillSnake();
+            fillApple();
+        }
+        break;
+
+        case 39: // right
+        var snakeHead = snake[0];
+        var newHead = [snakeHead[0], snakeHead[1]+1];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+            snake.unshift(apple);
+            //still not working right
+            $(snake).eq(0).css("background-color","black");
+            generateApple();
+            growScore();
+        }
+        else {
+            snake.unshift(newHead);
+            snake.pop();
+            fillSnake();
+            fillApple();
+        }
+        break;
+
+        case 40: // down
+        var snakeHead = snake[0];
+        var newHead = [snakeHead[0]+1, snakeHead[1]];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+            snake.unshift(apple);
+            //still not working right
+            $(snake).eq(0).css("background-color","black");
+            generateApple();
+            growScore();
+        }
+        else {
+            snake.unshift(newHead);
+            snake.pop();
+            fillSnake();
+            fillApple();
+        }
+        break;
+
+        default: return; // exit this handler for other keys
     }
-    else {
-        snake.unshift(newHead);
-        snake.pop();
-        fillSnake()
-        fillApple()
-    }
-    //}
-    // //on downKeyPress {
-    // var snakeHead = snake[0];
-    // var i = snakeHead[1];
-    // var newHead = snakeHead[0]+1;
-    // if ([newHead, i] === apple) {
-    //     snake.unshift([apple]);
-    // }
-    // else {
-    //     snake.pop();
-    //     snake.unshift([i, newHead]);
-    // }
-    // //}
-    // //on leftKeyPress {
-    // var snakeHead = snake[0];
-    // var i = snakeHead[0];
-    // var newHead = snakeHead[1]-1;
-    // if ([i, newHead] === apple) {
-    //     snake.unshift([apple]);
-    // }
-    // else {
-    //     snake.pop();
-    //     snake.unshift([i, newHead]);
-    // }
-    // //}
-    // //on rightKeyPress {
-    // var snakeHead = snake[0];
-    // var i = snakeHead[0];
-    // var newHead = snakeHead[1]+1;
-    // if ([i, newHead] === apple) {
-    //     snake.unshift([apple]);
-    // }
-    // else {
-    //     snake.pop();
-    //     snake.unshift([i, newHead]);
-    // }
-    // //}
-}
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+});
 
-
-
-//make all cubes attached to the snake follow the same motion as the head
-
-//function to move the cube around the grid using the arrow keys
 
 
 //lose states
