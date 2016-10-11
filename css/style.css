@@ -64,6 +64,9 @@ h1 {
   background-color: #EAEEE6;
   border-radius: 10px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h3 {
