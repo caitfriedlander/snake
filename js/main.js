@@ -25,7 +25,6 @@ $(document).ready(function() {
 });
 
 //SCORE
-
 function growScore(){
    $('#scoreboard').text(snake.length -1);
 }
@@ -86,6 +85,16 @@ function fillSnake() {
     }
 }
 
+// //directional animation
+// function moveLeft(){
+//     var snakeHead = snake[0];
+//     $(snakeHead).animate(1000, function(){
+//        if(/* keep moving */){
+//            move_left(snakeHead);
+//        }
+//     }
+// }
+
 //move and grow snake
 $(document).keydown(function(e) {
     switch(e.which) {
@@ -98,12 +107,17 @@ $(document).keydown(function(e) {
             $(snake).eq(0).css("background-color","black");
             generateApple();
             growScore();
+            moveLeft();
+        }
+        else if (newHead[1] < 0) {
+          alert("You've lost!");
         }
         else {
             snake.unshift(newHead);
             snake.pop();
             fillSnake();
             fillApple();
+            moveLeft();
         }
         break;
 
@@ -116,6 +130,9 @@ $(document).keydown(function(e) {
             $(snake).eq(0).css("background-color","black");
             generateApple();
             growScore();
+        }
+        else if (newHead[0] < 0) {
+          alert("You've lost!");
         }
         else {
             snake.unshift(newHead);
@@ -135,6 +152,9 @@ $(document).keydown(function(e) {
             generateApple();
             growScore();
         }
+        else if (newHead[1] > 36) {
+          alert("You've lost!");
+        }
         else {
             snake.unshift(newHead);
             snake.pop();
@@ -153,6 +173,9 @@ $(document).keydown(function(e) {
             generateApple();
             growScore();
         }
+        else if (newHead[0] > 36) {
+          alert("You've lost!");
+        }
         else {
             snake.unshift(newHead);
             snake.pop();
@@ -169,6 +192,5 @@ $(document).keydown(function(e) {
 
 
 //lose states
-//if snake head touches wall div function launch game over screen
 //if snake head touches snake body function launch game over screen
 
