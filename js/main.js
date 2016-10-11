@@ -95,16 +95,6 @@ function fillSnake() {
     }
 }
 
-// //directional animation
-// function moveLeft(){
-//     var snakeHead = snake[0];
-//     $(snakeHead).animate(1000, function(){
-//        if(/* keep moving */){
-//            move_left(snakeHead);
-//        }
-//     }
-// }
-
 //loop through snake array
 var checkSnake = function () {
   for (var i = 1; i<snake.length; i++) {
