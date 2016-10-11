@@ -5,6 +5,8 @@ var apple = [];
 $(function(){
     $("#gameScreen").hide();
     $("#pauseButton").hide();
+    $("#restart").hide();
+    $("#gameOver").hide();
     $("#playButton").on("click", function(){
         $("#startScreen, #gameScreen").toggle();
         $("#playButton, #pauseButton").toggle();
@@ -13,6 +15,33 @@ $(function(){
         fillApple();
     });
 });
+
+//Restart
+$("#restart").on("click", function (){
+        $("#gameOver, #gameScreen").toggle();
+        $("#restart, #pauseButton").toggle();
+        function generateNewSnake() {
+          var newSnakeHead = [];
+          function getRandomX(min, max) {
+            min = Math.ceil(0);
+            max = Math.floor(37);
+            return Math.floor(Math.random() * (max - min)) + min;
+          };
+          newSnakeHead.push(getRandomX());
+          function getRandomY(min, max) {
+            min = Math.ceil(0);
+            max = Math.floor(37);
+            return Math.floor(Math.random() * (max - min)) + min;
+          };
+          newSnakeHead.push(getRandomY());
+          snake  = [];
+          snake.push(newSnakeHead);
+      }
+          generateNewSnake();
+          fillSnake();
+          generateApple();
+          fillApple();
+    })
 
 //GRID
 $(document).ready(function() {
@@ -31,14 +60,14 @@ function growScore(){
 
 //APPLE
 function getRandomX(min, max) {
-  min = Math.ceil(0);
-  max = Math.floor(37);
+  min = Math.ceil(1);
+  max = Math.floor(36);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 function getRandomY(min, max) {
-  min = Math.ceil(0);
-  max = Math.floor(37);
+  min = Math.ceil(1);
+  max = Math.floor(36);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
@@ -95,6 +124,13 @@ function fillSnake() {
 //     }
 // }
 
+//loop through snake array
+// if(jQuery.inArray(newHead, snake)) {
+//     console.log("is in array");
+// } else {
+//     console.log("is NOT in array");
+// }
+
 //move and grow snake
 $(document).keydown(function(e) {
     switch(e.which) {
@@ -107,17 +143,16 @@ $(document).keydown(function(e) {
             $(snake).eq(0).css("background-color","black");
             generateApple();
             growScore();
-            moveLeft();
         }
         else if (newHead[1] < 0) {
-          alert("You've lost!");
+          $(" #gameScreen, #gameOver").toggle();
+          $("#pauseButton, #restart").toggle();
         }
         else {
             snake.unshift(newHead);
             snake.pop();
             fillSnake();
             fillApple();
-            moveLeft();
         }
         break;
 
@@ -132,7 +167,8 @@ $(document).keydown(function(e) {
             growScore();
         }
         else if (newHead[0] < 0) {
-          alert("You've lost!");
+          $(" #gameScreen, #gameOver").toggle();
+          $("#pauseButton, #restart").toggle();
         }
         else {
             snake.unshift(newHead);
@@ -153,7 +189,8 @@ $(document).keydown(function(e) {
             growScore();
         }
         else if (newHead[1] > 36) {
-          alert("You've lost!");
+          $(" #gameScreen, #gameOver").toggle();
+          $("#pauseButton, #restart").toggle();
         }
         else {
             snake.unshift(newHead);
@@ -174,7 +211,8 @@ $(document).keydown(function(e) {
             growScore();
         }
         else if (newHead[0] > 36) {
-          alert("You've lost!");
+          $(" #gameScreen, #gameOver").toggle();
+          $("#pauseButton, #restart").toggle();
         }
         else {
             snake.unshift(newHead);
