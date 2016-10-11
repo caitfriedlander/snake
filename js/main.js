@@ -48,6 +48,8 @@ function fillApple() {
         $('.space').eq(currentSpace).css("background-color","red");
 }
 
+//if apple = [] spawn a new apple
+
 //SNAKE
 $(document).ready(function generateSnake() {
     var newSnakeHead = [];
@@ -77,55 +79,62 @@ function fillSnake() {
 }
 
 //move and grow snake
+//still in progress
 function moveSnake () {
     //on upKeyPress {
     var snakeHead = snake[0];
     var i = snakeHead[1];
     var newHead = snakeHead[0]-1;
-    if ([newHead, i] === apple) {
-        snake.unshift([apple]);
-    }
-    else {
-        snake.pop();
+    // if (newHead === apple[0] && i === apple[1]) {
+    //     snake.unshift([apple]);
+    // }
+    // else {
         snake.unshift([i, newHead]);
-    }
-    //}
-    //on downKeyPress {
-    var snakeHead = snake[0];
-    var i = snakeHead[1];
-    var newHead = snakeHead[0]+1;
-    if ([newHead, i] === apple) {
-        snake.unshift([apple]);
-    }
-    else {
         snake.pop();
-        snake.unshift([i, newHead]);
-    }
+        for (var i=0; i < snake.length; i++) {
+            var row = snake[i][0];
+            var column = snake[i][1];
+            var currentSpace = (37 * row + column);
+            $('.space').eq(currentSpace).css("background-color","black");
+        }
+    // }
     //}
-    //on leftKeyPress {
-    var snakeHead = snake[0];
-    var i = snakeHead[0];
-    var newHead = snakeHead[1]-1;
-    if ([i, newHead] === apple) {
-        snake.unshift([apple]);
-    }
-    else {
-        snake.pop();
-        snake.unshift([i, newHead]);
-    }
-    //}
-    //on rightKeyPress {
-    var snakeHead = snake[0];
-    var i = snakeHead[0];
-    var newHead = snakeHead[1]+1;
-    if ([i, newHead] === apple) {
-        snake.unshift([apple]);
-    }
-    else {
-        snake.pop();
-        snake.unshift([i, newHead]);
-    }
-    //}
+    // //on downKeyPress {
+    // var snakeHead = snake[0];
+    // var i = snakeHead[1];
+    // var newHead = snakeHead[0]+1;
+    // if ([newHead, i] === apple) {
+    //     snake.unshift([apple]);
+    // }
+    // else {
+    //     snake.pop();
+    //     snake.unshift([i, newHead]);
+    // }
+    // //}
+    // //on leftKeyPress {
+    // var snakeHead = snake[0];
+    // var i = snakeHead[0];
+    // var newHead = snakeHead[1]-1;
+    // if ([i, newHead] === apple) {
+    //     snake.unshift([apple]);
+    // }
+    // else {
+    //     snake.pop();
+    //     snake.unshift([i, newHead]);
+    // }
+    // //}
+    // //on rightKeyPress {
+    // var snakeHead = snake[0];
+    // var i = snakeHead[0];
+    // var newHead = snakeHead[1]+1;
+    // if ([i, newHead] === apple) {
+    //     snake.unshift([apple]);
+    // }
+    // else {
+    //     snake.pop();
+    //     snake.unshift([i, newHead]);
+    // }
+    // //}
 }
 
 
