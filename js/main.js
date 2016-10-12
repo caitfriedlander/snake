@@ -1,9 +1,10 @@
 var snake = [];
 var apple = [];
 var newSnakeHead;
+var lost = false;
 snake.direction = null;
 
-//BUTTONS
+//ON LOAD
 $(function(){
     $("#gameScreen").hide();
     $("#pauseButton").hide();
@@ -18,7 +19,7 @@ $(function(){
     });
 });
 
-//Restart
+//RESTART
 $("#restart").on("click", function (){
         $("#gameOver, #gameScreen").toggle();
         $("#restart, #pauseButton").toggle();
@@ -33,8 +34,18 @@ $("#restart").on("click", function (){
           fillSnake();
           generateApple();
           fillApple();
-          //score 0
+          $('#scoreboard').text('0000');
     })
+
+//GAMEOVER
+ function youLose () {
+  if (lost === true) {
+    $("#gameScreen").hide();
+    $("#gameOver").show();
+    $("#pauseButton, #restart").toggle();
+    clearInterval(int);
+  }
+ }
 
 //GRID
 $(document).ready(function() {
@@ -97,18 +108,18 @@ function fillSnake() {
     }
 }
 
-//loop through snake array
+//LOOP THROUGH SNAKE ARRAY
+//fix this!!!!!!
 function checkSnake () {
   for (var i = 1; i<snake.length; i++) {
     if (_.isEqual(snake[0], snake[i])) {
-      $(" #gameScreen, #gameOver").toggle();
-      $("#pauseButton, #restart").toggle();
+      youLose();
       console.log("totally f'ed")
     }
   }
 }
 
-//Snake Animation
+//ANIMATE SNAKE
 var int = setInterval( function() {
   var snakeHead = snake[0];
   if (snake.direction === "left") {
@@ -121,8 +132,8 @@ var int = setInterval( function() {
             growScore();
           }
           else if (newHead[1] < 0) {
-            $(" #gameScreen, #gameOver").toggle();
-            $("#pauseButton, #restart").toggle();
+            lost = true;
+            youLose();
           }
           else {
             snake.unshift(newHead);
@@ -141,8 +152,8 @@ var int = setInterval( function() {
         growScore();
       }
       else if (newHead[0] < 0) {
-        $(" #gameScreen, #gameOver").toggle();
-        $("#pauseButton, #restart").toggle();
+        lost = true;
+        youLose();
       }
       else {
         snake.unshift(newHead);
@@ -161,8 +172,8 @@ var int = setInterval( function() {
       growScore();
     }
     else if (newHead[1] > 36) {
-      $(" #gameScreen, #gameOver").toggle();
-      $("#pauseButton, #restart").toggle();
+      lost = true;
+      youLose();
     }
     else {
       snake.unshift(newHead);
@@ -181,8 +192,8 @@ var int = setInterval( function() {
       growScore();
     }
     else if (newHead[0] > 36) {
-      $(" #gameScreen, #gameOver").toggle();
-      $("#pauseButton, #restart").toggle();
+      lost = true;
+      youLose();
     }
     else {
       snake.unshift(newHead);
@@ -193,109 +204,27 @@ var int = setInterval( function() {
   }
 },300);
 
-
-//move and grow snake
+//EVENT LISTENERS
 $(document).keydown(function(e) {
     switch(e.which) { // snake.direction
         case 37: // left
         snake.direction = "left";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0], snakeHead[1]-1];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[1] < 0) {
-          $(" #gameScreen, #gameOver").toggle();
-          $("#pauseButton, #restart").toggle();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         case 38: // up
         snake.direction = "up";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0]-1, snakeHead[1]];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[0] < 0) {
-          $(" #gameScreen, #gameOver").toggle();
-          $("#pauseButton, #restart").toggle();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         case 39: // right
         snake.direction = "right";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0], snakeHead[1]+1];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[1] > 36) {
-          $(" #gameScreen, #gameOver").toggle();
-          $("#pauseButton, #restart").toggle();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         case 40: // down
         snake.direction = "down";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0]+1, snakeHead[1]];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[0] > 36) {
-          $(" #gameScreen, #gameOver").toggle();
-          $("#pauseButton, #restart").toggle();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         default: return; // exit this handler for other keys
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
 });
-
-
-
-//lose states
-//if snake head touches snake body function launch game over screen
 
