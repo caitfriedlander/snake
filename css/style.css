@@ -2,13 +2,26 @@
   border-radius: 10px;
   height: 650px;
   width: 700px;
-  background-color: #96AB84;
+/*  background-color: #96AB84;*/
+  background: #87d038; /* Old browsers */
+  background: -moz-linear-gradient(top,
+    #87d038 0%, #8ed04c 50%, #6ab91b 51%, #63b20e 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,
+    #87d038 0%,#8ed04c 50%,#6ab91b 51%,#63b20e 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,
+    #87d038 0%,#8ed04c 50%,#6ab91b 51%,#63b20e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr='#87d038', endColorstr='#63b20e',GradientType=0 ); /* IE6-9 */
   text-align: center;
   margin: 0 auto;
 }
 
 h1 {
   display: inline-block;
+  margin: 30px 0 -30px 0;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3em;
+  color: white;
 }
 
 #case {
@@ -17,11 +30,14 @@ h1 {
   flex-direction: row;
   align-content: space-around;
   margin: 30px 20px 0 30px;
+  font-family: 'VT323', monospace;
 }
+
+/*SCREEN STYLING*/
 
 .screen {
   /*border: 1px solid black;*/
-  border border-radius: 10px;
+/*  border-radius: 10px;*/
   background-color: #EAEEE6;
   height: 444px;
   width: 444px;
@@ -32,12 +48,28 @@ h1 {
   background-color: forestgreen;
 }
 
+#gameScreen {
+    background-color: #d2d6cf;
+    height: 444px;
+    width: 444px;
+}
+
+.space {
+    background-color: #EAEEE6;
+    height: 10px;
+    width: 10px;
+    margin: 1px;
+    display: inline-block;
+    float: left;
+}
+
 #gameOver {
   background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-size: 2em;
 }
 .restart {
   height: 50px;
@@ -45,6 +77,8 @@ h1 {
   border-radius: 10px;
   margin: 0 auto;
 }
+
+/* SIDE PANEL STYLING*/
 
 #side-panel {
  /* border: 1px solid black;*/
@@ -56,43 +90,55 @@ h1 {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  font-family: 'VT323', monospace;
 }
 
 #scoreboard {
   height: 50px;
   width: 120px;
-  background-color: #EAEEE6;
+/*  background-color: #EAEEE6;*/
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top,
+    #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,
+    #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,
+    #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
   border-radius: 10px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 2em;
 }
 
 h3 {
   margin: 0 auto;
+  font-size: 2em;
 }
+
 .sidebuttons {
   height: 50px;
   width: 120px;
   border-radius: 10px;
   margin: 0 auto;
+  font-family: 'VT323', monospace;
+  font-size: 1em;
+  background: #bfbfbf; /* Old browsers */
+  background: -moz-linear-gradient(top,
+    #bfbfbf 0%, #b6b6b6 50%, #b2b2b2 51%, #bfbfbf 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,
+    #bfbfbf 0%,#b6b6b6 50%,#b2b2b2 51%,#bfbfbf 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,
+    #bfbfbf 0%,#b6b6b6 50%,#b2b2b2 51%,#bfbfbf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr='#bfbfbf', endColorstr='#bfbfbf',GradientType=0 ); /* IE6-9 */
 }
 
 #instructions {
   margin-top: 20px;
-}
-
-#gameScreen {
-    background-color: #d2d6cf;
-    height: 444px;
-    width: 444px;
-}
-.space {
-    background-color: #EAEEE6;
-    height: 10px;
-    width: 10px;
-    margin: 1px;
-    display: inline-block;
-    float: left;
+  font-family: 'VT323', monospace;
+  font-size: 1.5em;
 }
