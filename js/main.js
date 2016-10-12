@@ -4,7 +4,7 @@ var newSnakeHead;
 var lost = false;
 snake.direction = null;
 
-//ON LOAD
+//START SCREEN CONDITIONS
 $(function(){
     $("#gameScreen").hide();
     $("#pauseButton").hide();
@@ -19,7 +19,7 @@ $(function(){
     });
 });
 
-//RESTART
+//RESTART BUTTON
 $("#restart").on("click", function (){
         $("#gameOver, #gameScreen").toggle();
         $("#restart, #pauseButton").toggle();
@@ -34,7 +34,7 @@ $("#restart").on("click", function (){
           fillSnake();
           generateApple();
           fillApple();
-          $('#scoreboard').text('0000');
+          $("#scoreboard").text('0000');
     })
 
 //GAMEOVER
@@ -108,31 +108,33 @@ function fillSnake() {
     }
 }
 
-//LOOP THROUGH SNAKE ARRAY
-//fix this!!!!!!
+//SNAKE ARRAY CHECKER
 function checkSnake () {
   for (var i = 1; i<snake.length; i++) {
     if (_.isEqual(snake[0], snake[i])) {
-      youLose();
+      return true;
       console.log("totally f'ed")
     }
   }
+  return false;
 }
 
-//ANIMATE SNAKE
+//SNAKE ANIMATION
 var int = setInterval( function() {
   var snakeHead = snake[0];
   if (snake.direction === "left") {
     var newHead = [snakeHead[0], snakeHead[1]-1]
     if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
       snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
+            $(apple).css("background-color","black");
             generateApple();
             growScore();
           }
           else if (newHead[1] < 0) {
             lost = true;
+            youLose();
+          }
+          else if (checkSnake()) {
             youLose();
           }
           else {
@@ -146,13 +148,15 @@ var int = setInterval( function() {
           var newHead = [snakeHead[0]-1, snakeHead[1]];
           if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
             snake.unshift(apple);
-        //still not working right
-        $(snake).eq(0).css("background-color","black");
+        $(apple).css("background-color","black");
         generateApple();
         growScore();
       }
       else if (newHead[0] < 0) {
         lost = true;
+        youLose();
+      }
+      else if (checkSnake()) {
         youLose();
       }
       else {
@@ -166,13 +170,15 @@ var int = setInterval( function() {
       var newHead = [snakeHead[0], snakeHead[1]+1];
       if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
         snake.unshift(apple);
-      //still not working right
-      $(snake).eq(0).css("background-color","black");
+      $(apple).css("background-color","black");
       generateApple();
       growScore();
     }
     else if (newHead[1] > 36) {
       lost = true;
+      youLose();
+    }
+    else if (checkSnake()) {
       youLose();
     }
     else {
@@ -186,13 +192,15 @@ var int = setInterval( function() {
     var newHead = [snakeHead[0]+1, snakeHead[1]];
     if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
       snake.unshift(apple);
-      //still not working right
-      $(snake).eq(0).css("background-color","black");
+      $(apple).css("background-color","black");
       generateApple();
       growScore();
     }
     else if (newHead[0] > 36) {
       lost = true;
+      youLose();
+    }
+    else if (checkSnake()) {
       youLose();
     }
     else {
@@ -204,25 +212,22 @@ var int = setInterval( function() {
   }
 },100);
 
+
 //EVENT LISTENERS
 $(document).keydown(function(e) {
     switch(e.which) { // snake.direction
         case 37: // left
         snake.direction = "left";
         break;
-
         case 38: // up
         snake.direction = "up";
         break;
-
         case 39: // right
         snake.direction = "right";
         break;
-
         case 40: // down
         snake.direction = "down";
         break;
-
         default: return; // exit this handler for other keys
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
