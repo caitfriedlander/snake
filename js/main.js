@@ -202,7 +202,7 @@ var int = setInterval( function() {
       fillApple();
     }
   }
-},300);
+},100);
 
 //EVENT LISTENERS
 $(document).keydown(function(e) {
