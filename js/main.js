@@ -5,6 +5,7 @@ var newSnakeHead;
 var newHead;
 var int;
 var lost = false;
+var isPaused;
 snake.direction = null;
 animationStart();
 
@@ -12,11 +13,13 @@ animationStart();
 $(function(){
   $("#gameScreen").hide();
   $("#pauseButton").hide();
+  $("#unpauseButton").hide();
   $("#restart").hide();
   $("#gameOver").hide();
   $("#playButton").on("click", function(){
     $("#startScreen, #gameScreen").toggle();
     $("#playButton, #pauseButton").toggle();
+    isPaused = false;
     fillSnake();
     fillApple();
   });
@@ -36,6 +39,20 @@ $(document).ready(function() {
 function growScore(){
   $('#scoreboard').text(snake.length -1);
 }
+
+//PAUSE BUTTON
+$("#pauseButton").on("click", function (e){
+  $("#pauseButton, #unpauseButton").toggle();
+  e.preventDefault();
+  isPaused = true;
+});
+
+//UNPAUSE BUTTON
+$("#unpauseButton").on("click", function (e){
+  $("#unpauseButton, #pauseButton").toggle();
+  e.preventDefault();
+  isPaused = false;
+});
 
 //GAMEOVER
 function youLose () {
@@ -141,66 +158,68 @@ function moveSnake () {
 //SNAKE ANIMATION
 function animationStart () {
   int = setInterval( function() {
-  var snakeHead = snake[0];
-  //if paused
-  if (snake.direction === "left") {
-    newHead = [snakeHead[0], snakeHead[1]-1]
-    if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-      growSnake();
-    } else if (newHead[1] < 0) {
-      lost = true;
-      youLose();
-    } else {
-      moveSnake();
+    if(!isPaused) {
+    var snakeHead = snake[0];
+      if (snake.direction === "left") {
+        newHead = [snakeHead[0], snakeHead[1]-1]
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+          growSnake();
+        } else if (newHead[1] < 0) {
+          lost = true;
+          youLose();
+        } else {
+          moveSnake();
+        }
+      if (checkSnake()) {
+          lost = true;
+          youLose();
+        }
+      }
+      if (snake.direction === "up") {
+        newHead = [snakeHead[0]-1, snakeHead[1]];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+          growSnake();
+        } else if (newHead[0] < 0) {
+          lost = true;
+          youLose();
+        } else if (checkSnake()) {
+          lost = true;
+          youLose();
+        } else {
+          moveSnake();
+        }
+      }
+      if (snake.direction === "right") {
+        newHead = [snakeHead[0], snakeHead[1]+1];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+          growSnake();
+        } else if (newHead[1] > 36) {
+          lost = true;
+          youLose();
+        } else if (checkSnake()) {
+          lost = true;
+          youLose();
+        } else {
+          moveSnake();
+        }
+      }
+      if (snake.direction === "down") {
+        newHead = [snakeHead[0]+1, snakeHead[1]];
+        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
+          growSnake();
+        } else if (newHead[0] > 36) {
+          lost = true;
+          youLose();
+        } else if (checkSnake()) {
+          lost = true;
+          youLose();
+        } else {
+          moveSnake()
+        }
+      }
     }
-  if (checkSnake()) {
-      lost = true;
-      youLose();
-    }
-  }
-  if (snake.direction === "up") {
-    newHead = [snakeHead[0]-1, snakeHead[1]];
-    if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-      growSnake();
-    } else if (newHead[0] < 0) {
-      lost = true;
-      youLose();
-    } else if (checkSnake()) {
-      lost = true;
-      youLose();
-    } else {
-      moveSnake();
-    }
-  }
-  if (snake.direction === "right") {
-    newHead = [snakeHead[0], snakeHead[1]+1];
-    if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-      growSnake();
-    } else if (newHead[1] > 36) {
-      lost = true;
-      youLose();
-    } else if (checkSnake()) {
-      lost = true;
-      youLose();
-    } else {
-      moveSnake();
-    }
-  }
-  if (snake.direction === "down") {
-    newHead = [snakeHead[0]+1, snakeHead[1]];
-    if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-      growSnake();
-    } else if (newHead[0] > 36) {
-      lost = true;
-      youLose();
-    } else if (checkSnake()) {
-      lost = true;
-      youLose();
-    } else {
-      moveSnake()
-    }
-  }
-},100);}
+  },100);
+}
 
 //EVENT LISTENERS
 $(document).keydown(function(e) {
