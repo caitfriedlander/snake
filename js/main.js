@@ -241,3 +241,20 @@ $(document).keydown(function(e) {
   e.preventDefault(); // prevent the default action (scroll / move caret)
 });
 
+//SPEED SELECTORS
+$('#speedSelect input').change( function(e) {
+   var howFast = $('input[name=speed]:checked', '#speedSelect').val();
+   switch(e) {
+   case (howFast === "slow" && isPaused === false):
+    int = 300;
+   break;
+   case (howFast === "medium" && isPaused === false):
+    int = 100;
+   break;
+   case (howFast === "fast" && isPaused === false):
+    int = 50;
+   break;
+   }
+});
+
+

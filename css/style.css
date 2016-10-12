@@ -44,6 +44,21 @@ h1 {
   margin-right: 30px;
 }
 
+.blink {
+  animation: blink-animation 1.2s steps(2, start) infinite;
+  -webkit-animation: blink-animation 1.2s steps(2, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
 #startScreen {
   background-color: forestgreen;
   font-size: 2em;
@@ -84,7 +99,7 @@ h1 {
 #side-panel {
  /* border: 1px solid black;*/
   border-radius: 10px;
-  height: 200px;
+  height: 330px;
   width: 150px;
   margin-top: 25px;
   background-color: #5a664f;
@@ -138,6 +153,14 @@ h3 {
     startColorstr='#bfbfbf', endColorstr='#bfbfbf',GradientType=0 ); /* IE6-9 */
 }
 
+form {
+text-align: left;
+margin: 0 auto;
+margin-bottom: 15px;
+font-size: 1.5em;
+}
+
+/*FOOTER STYLING*/
 #instructions {
   margin-top: 20px;
   font-family: 'VT323', monospace;

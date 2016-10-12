@@ -15,7 +15,7 @@
     <br>
     <div id= "case">
       <div class="screen" id="startScreen">
-        <p>Click play to start!</p>
+        <p class="blink">Click play to start!</p>
         <img src="assets/pixelsnakehappy.png">
       </div>
       <div class="screen" id="gameOver">
@@ -30,6 +30,14 @@
         <button class="sidebuttons" id="playButton">Play</button>
         <button class="sidebuttons" id="pauseButton">Pause</button>
         <button class="sidebuttons" id="unpauseButton">Unpause</button>
+        <h3>Speed</h3>
+        <form id="speedSelect">
+          <input type="radio" name="speed" value="slow" checked> Slow
+          <br>
+          <input type="radio" name="speed" value="medium"> Medium
+          <br>
+          <input type="radio" name="speed" value="fast"> Fast
+        </form>
       </div>
     </div>
     <p id="instructions">Use the arrow keys to steer the snake!<br>Collect apples and don't hit the wall - or yourself!</p>
