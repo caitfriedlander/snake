@@ -35,6 +35,7 @@ $("#restart").on("click", function (){
           generateApple();
           fillApple();
           $("#scoreboard").text('0000');
+          //restart the interval
     })
 
 //GAMEOVER
@@ -108,12 +109,13 @@ function fillSnake() {
     }
 }
 
-//SNAKE ARRAY CHECKER
+//SNAKE ARRAY SCANNER
 function checkSnake () {
   for (var i = 1; i<snake.length; i++) {
     if (_.isEqual(snake[0], snake[i])) {
       return true;
       console.log("totally f'ed")
+      //get it to behave right now
     }
   }
   return false;
