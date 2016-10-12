@@ -201,7 +201,7 @@ var int = setInterval( function() {
       fillApple();
     }
   }
-},300);
+},100);
 
 
 //move and grow snake
@@ -213,71 +213,14 @@ $(document).keydown(function(e) {
 
         case 38: // up
         snake.direction = "up";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0]-1, snakeHead[1]];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[0] < 0) {
-          lost = true;
-          youLose();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         case 39: // right
         snake.direction = "right";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0], snakeHead[1]+1];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[1] > 36) {
-          lost = true;
-          youLose();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         case 40: // down
         snake.direction = "down";
-        var snakeHead = snake[0];
-        var newHead = [snakeHead[0]+1, snakeHead[1]];
-        if (newHead[0] === apple[0] && newHead[1] === apple[1]) {
-            snake.unshift(apple);
-            //still not working right
-            $(snake).eq(0).css("background-color","black");
-            generateApple();
-            growScore();
-        }
-        else if (newHead[0] > 36) {
-          lost = true;
-          youLose();
-        }
-        else {
-            snake.unshift(newHead);
-            snake.pop();
-            fillSnake();
-            fillApple();
-        }
         break;
 
         default: return; // exit this handler for other keys
