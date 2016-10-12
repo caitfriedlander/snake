@@ -124,7 +124,7 @@ function fillSnake() {
     var row = snake[i][0];
     var column = snake[i][1];
     var currentSpace = (37 * row + column);
-    $('.space').eq(currentSpace).css("background-color","black");
+    $('.space').eq(currentSpace).css("background-color","green");
   }
 }
 
@@ -142,7 +142,7 @@ function checkSnake () {
 //SNAKE GROW FUNCTION
 function growSnake () {
   snake.unshift(apple);
-  $(apple).css("background-color","black");
+  $(apple).css("background-color","green");
   generateApple();
   growScore();
 }
