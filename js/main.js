@@ -4,7 +4,7 @@ var apple = [];
 var newSnakeHead;
 var newHead;
 var int;
-var snakeSpeed = null;
+var snakeSpeed;
 var lost = false;
 var isPaused;
 var lastKnownSpeed;
@@ -23,6 +23,9 @@ $(function(){
     isPaused = false;
     fillSnake();
     fillApple();
+    snakeSpeed = 200;
+    lastKnownSpeed = snakeSpeed;
+    animationStart();
   });
 });
 
