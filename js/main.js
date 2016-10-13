@@ -4,7 +4,7 @@ var apple = [];
 var newSnakeHead;
 var newHead;
 var int;
-var snakeSpeed = 300;
+var snakeSpeed = 200;
 var lost = false;
 var isPaused;
 snake.direction = null;
@@ -256,19 +256,20 @@ $(document).keydown(function(e) {
 
 //SPEED SELECTORS
 $('#speedSelect input').click(function(e) {
+   debugger;
    var howFast = $('input[name=speed]:checked', '#speedSelect').val();
-   if (howFast === "slow" && isPaused === false) {
+   if (howFast === "slow") {
       clearInterval(snakeSpeed);
-      snakeSpeed = 300;
+      snakeSpeed = 200;
       console.log('so slow')
-     } else if (howFast === "medium" && isPaused === false){
+     } else if (howFast === "medium"){
       clearInterval(snakeSpeed);
       snakeSpeed = 100;
       console.log('Im average')
-     } else if (howFast === "fast" && isPaused === false){
+     } else if (howFast === "fast"){
       clearInterval(snakeSpeed);
       snakeSpeed = 50;
-      console.log('so slow')
+      console.log('so fast')
   }
 });
 
