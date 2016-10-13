@@ -4,6 +4,7 @@ var apple = [];
 var newSnakeHead;
 var newHead;
 var int;
+var snakeSpeed = 300;
 var lost = false;
 var isPaused;
 snake.direction = null;
@@ -75,6 +76,7 @@ $("#restart").on("click", function (){
   }
     generateNewSnake();
     fillSnake();
+    clearApple();
     generateApple();
     fillApple();
     animationStart();
@@ -95,6 +97,13 @@ function getRandomY(min, max) {
 }
 
 //APPLE
+function clearApple () {
+  var row = apple[0];
+  var column = apple[1];
+  var currentSpace = (37 * row + column);
+  $('.space').eq(currentSpace).css("background-image", "");
+}
+
 function generateApple() {
   apple = []
   apple.push(getRandomX());
@@ -107,7 +116,7 @@ function fillApple() {
   var row = apple[0];
   var column = apple[1];
   var currentSpace = (37 * row + column);
-  $('.space').eq(currentSpace).css("background-color","red");
+  $('.space').eq(currentSpace).css("background-image","url(assets/apple.png)");
 }
 
 //SNAKE
@@ -142,6 +151,7 @@ function checkSnake () {
 //SNAKE GROW FUNCTION
 function growSnake () {
   snake.unshift(apple);
+  clearApple();
   $(apple).css("background-color","green");
   generateApple();
   growScore();
@@ -218,12 +228,12 @@ function animationStart () {
         }
       }
     }
-  },100);
+  },snakeSpeed);
 }
 
 //EVENT LISTENERS
 $(document).keydown(function(e) {
-  switch(e.which) { // snake.direction
+  switch(e.which) {
     case 37: // left
     snake.direction = "left";
     break;
@@ -238,23 +248,25 @@ $(document).keydown(function(e) {
     break;
     default: return; // exit this handler for other keys
   }
-  e.preventDefault(); // prevent the default action (scroll / move caret)
+  e.preventDefault(); // prevent scroll
 });
 
 //SPEED SELECTORS
-$('#speedSelect input').change( function(e) {
+$('#speedSelect input').click(function(e) {
    var howFast = $('input[name=speed]:checked', '#speedSelect').val();
-   switch(e) {
-   case (howFast === "slow" && isPaused === false):
-    int = 300;
-   break;
-   case (howFast === "medium" && isPaused === false):
-    int = 100;
-   break;
-   case (howFast === "fast" && isPaused === false):
-    int = 50;
-   break;
-   }
+   if (howFast === "slow" && isPaused === false) {
+      clearInterval(snakeSpeed);
+      snakeSpeed = 300;
+      console.log('so slow')
+     } else if (howFast === "medium" && isPaused === false){
+      clearInterval(snakeSpeed);
+      snakeSpeed = 100;
+      console.log('Im average')
+     } else if (howFast === "fast" && isPaused === false){
+      clearInterval(snakeSpeed);
+      snakeSpeed = 50;
+      console.log('so slow')
+  }
 });
 
 
