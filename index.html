@@ -6,6 +6,7 @@
   <title>SNAKE!</title>
   <script   src="http://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.4/lodash.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|VT323" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,18 +14,28 @@
     <h1 id="title">SNAKE!</h1>
     <br>
     <div id= "case">
-      <div class="screen" id="startScreen">fun snake graphic goes here</div>
+      <div class="screen" id="startScreen">
+        <p class="blink">Click play to start!</p>
+        <img src="assets/pixelsnakehappy.png">
+      </div>
       <div class="screen" id="gameOver">
         <p>You have died!</p>
-        <p>sad snake graphic goes here</p>
+        <img src="assets/pixelsnakesad.png">
       </div>
       <div class="screen" id="gameScreen"></div>
       <div id="side-panel">
-        <h3>Your Score</h3>
+        <h3>Score</h3>
         <div id="scoreboard">0000</div>
         <button class="sidebuttons" id="restart">Play Again?</button>
         <button class="sidebuttons" id="playButton">Play</button>
         <button class="sidebuttons" id="pauseButton">Pause</button>
+        <button class="sidebuttons" id="unpauseButton">Unpause</button>
+        <h3>Speed</h3>
+        <div id="speedbuttons">
+          <button class="speed" value="slow">Inch Worm</button>
+          <button class="speed" value="medium">Python</button>
+          <button class="speed" value="fast">Black Mamba</button>
+        </div>
       </div>
     </div>
     <p id="instructions">Use the arrow keys to steer the snake!<br>Collect apples and don't hit the wall - or yourself!</p>
