@@ -8,7 +8,7 @@ var snakeSpeed = 200;
 var lost = false;
 var isPaused;
 snake.direction = null;
-animationStart();
+
 
 //START SCREEN CONDITIONS
 $(function(){
@@ -168,6 +168,47 @@ function moveSnake () {
   fillApple();
 }
 
+//SPEED SELECTORS
+$('#speedSelect input').change(function(e) {
+ var howFast = $('input[name=speed]:checked', '#speedSelect').val();
+ if (howFast === "slow") {
+    clearInterval(snakeSpeed);
+    snakeSpeed = 200;
+    animationStart();
+    console.log('so slow')
+   } else if (howFast === "medium"){
+    clearInterval(snakeSpeed);
+    snakeSpeed = 100;
+    animationStart();
+    console.log('Im average')
+   } else if (howFast === "fast"){
+    clearInterval(snakeSpeed);
+    snakeSpeed = 50;
+    animationStart();
+    console.log('so fast')
+  }
+});
+
+//EVENT LISTENERS
+$(document).keydown(function(e) {
+  switch(e.which) {
+    case 37: // left
+    snake.direction = "left";
+    break;
+    case 38: // up
+    snake.direction = "up";
+    break;
+    case 39: // right
+    snake.direction = "right";
+    break;
+    case 40: // down
+    snake.direction = "down";
+    break;
+    default: return; // exit this handler for other keys
+  }
+  e.preventDefault(); // prevent scroll
+});
+
 //SNAKE ANIMATION
 function animationStart () {
   int = setInterval( function() {
@@ -234,42 +275,6 @@ function animationStart () {
   },snakeSpeed);
 }
 
-//EVENT LISTENERS
-$(document).keydown(function(e) {
-  switch(e.which) {
-    case 37: // left
-    snake.direction = "left";
-    break;
-    case 38: // up
-    snake.direction = "up";
-    break;
-    case 39: // right
-    snake.direction = "right";
-    break;
-    case 40: // down
-    snake.direction = "down";
-    break;
-    default: return; // exit this handler for other keys
-  }
-  e.preventDefault(); // prevent scroll
-});
 
-//SPEED SELECTORS
-$('#speedSelect input').click(function(e) {
-   var howFast = $('input[name=speed]:checked', '#speedSelect').val();
-   if (howFast === "slow") {
-      clearInterval(snakeSpeed);
-      snakeSpeed = 200;
-      console.log('so slow')
-     } else if (howFast === "medium"){
-      clearInterval(snakeSpeed);
-      snakeSpeed = 100;
-      console.log('Im average')
-     } else if (howFast === "fast"){
-      clearInterval(snakeSpeed);
-      snakeSpeed = 50;
-      console.log('so fast')
-  }
-});
 
 
