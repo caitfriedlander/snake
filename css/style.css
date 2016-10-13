@@ -1,6 +1,6 @@
 #container {
   border-radius: 10px;
-  height: 650px;
+  height: 670px;
   width: 700px;
   background: rgb(146,215,73); /* Old browsers */
   background: -moz-linear-gradient(top,
@@ -178,3 +178,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0fae0', end
   font-size: 1.5em;
 }
 
+#footer {
+  font-family: 'VT323', monospace;
+  font-size: 1em;
+  margin-top: -10px;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}
