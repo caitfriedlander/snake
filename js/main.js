@@ -128,7 +128,7 @@ $(document).ready(function generateSnake() {
 })
 
 function fillSnake() {
-  $(".space").css("background-color", "#EAEEE6")
+  $(".space").css("background-color", "")
   for (var i=0; i < snake.length; i++) {
     var row = snake[i][0];
     var column = snake[i][1];
@@ -256,7 +256,6 @@ $(document).keydown(function(e) {
 
 //SPEED SELECTORS
 $('#speedSelect input').click(function(e) {
-   debugger;
    var howFast = $('input[name=speed]:checked', '#speedSelect').val();
    if (howFast === "slow") {
       clearInterval(snakeSpeed);
