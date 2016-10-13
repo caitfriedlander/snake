@@ -5,9 +5,9 @@ var newSnakeHead;
 var newHead;
 var int;
 var snakeSpeed;
+var lastKnownSpeed;
 var lost = false;
 var isPaused;
-var lastKnownSpeed;
 snake.direction = null;
 
 //START SCREEN CONDITIONS
