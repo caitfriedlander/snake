@@ -152,7 +152,10 @@ function checkSnake () {
 function growSnake () {
   snake.unshift(apple);
   clearApple();
-  $(apple).css("background-color","green");
+  var row = apple[0];
+  var column = apple[1];
+  var currentApple = (37 * row + column);
+  $('.space').eq(currentApple).css("background-color","green");
   generateApple();
   growScore();
 }
