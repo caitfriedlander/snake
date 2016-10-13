@@ -4,11 +4,11 @@ var apple = [];
 var newSnakeHead;
 var newHead;
 var int;
-var snakeSpeed = 200;
+var snakeSpeed = null;
 var lost = false;
 var isPaused;
+var lastKnownSpeed;
 snake.direction = null;
-animationStart();
 
 //START SCREEN CONDITIONS
 $(function(){
@@ -62,7 +62,6 @@ function youLose () {
   $("#pauseButton").hide();
   $("#restart").show();
   clearInterval(int);
-  snakeSpeed = null;
 }
 
 //RESTART BUTTON
@@ -76,6 +75,7 @@ $("#restart").on("click", function (){
     snake  = [];
     snake.push(newSnakeHead);
   }
+    snakeSpeed = lastKnownSpeed;
     generateNewSnake();
     fillSnake();
     clearApple();
@@ -257,20 +257,26 @@ $(document).keydown(function(e) {
 });
 
 //SPEED SELECTORS
-$('#speedSelect input').change(function(e) {
- var howFast = $('input[name=speed]:checked', '#speedSelect').val();
- debugger;
+$('.speed').click(function(e) {
+ var howFast = $(this).attr('value');
+ snakeSpeed = null;
  if (howFast === "slow") {
+    lastKnownSpeed = 200;
     clearInterval(snakeSpeed);
     snakeSpeed = 200;
+    animationStart();
     console.log('so slow')
    } else if (howFast === "medium"){
+    lastKnownSpeed = 100;
     clearInterval(snakeSpeed);
     snakeSpeed = 100;
+    animationStart();
     console.log('Im average')
    } else if (howFast === "fast"){
+    lastKnownSpeed = 50;
     clearInterval(snakeSpeed);
     snakeSpeed = 50;
+    animationStart();
     console.log('so fast')
   }
 });
