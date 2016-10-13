@@ -2,16 +2,15 @@
   border-radius: 10px;
   height: 650px;
   width: 700px;
-/*  background-color: #96AB84;*/
-  background: #87d038; /* Old browsers */
+  background: rgb(146,215,73); /* Old browsers */
   background: -moz-linear-gradient(top,
-    #87d038 0%, #8ed04c 50%, #6ab91b 51%, #63b20e 100%); /* FF3.6-15 */
+    rgba(146,215,73,1) 0%, rgba(191,240,138,1) 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,
-    #87d038 0%,#8ed04c 50%,#6ab91b 51%,#63b20e 100%); /* Chrome10-25,Safari5.1-6 */
+    rgba(146,215,73,1) 0%,rgba(191,240,138,1) 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,
-    #87d038 0%,#8ed04c 50%,#6ab91b 51%,#63b20e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    rgba(146,215,73,1) 0%,rgba(191,240,138,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(
-    startColorstr='#87d038', endColorstr='#63b20e',GradientType=0 ); /* IE6-9 */
+    startColorstr='#92d749', endColorstr='#bff08a',GradientType=0 ); /* IE6-9 */
   text-align: center;
   margin: 0 auto;
 }
