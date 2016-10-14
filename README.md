@@ -1,12 +1,15 @@
 SNAKE!
 ========
-
 SNAKE! is a game you can never win- the objective is just to see how many points you can score. Naturally, I love it.
 
 Play it online:
 
     https://caitfriedlander.github.io/snake/
 
+Check out some of the code:
+
+	https://gist.github.com/caitfriedlander/83d0caba88cc307272b72e171f30b3a8
+	
 Features
 --------
 
